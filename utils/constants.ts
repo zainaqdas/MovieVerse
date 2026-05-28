@@ -63,6 +63,8 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Catalog", href: "/catalog" },
   { label: "Trending", href: "/catalog?sort=TRENDING_DESC" },
+  { label: "Genres", href: "/genres" },
+  { label: "Discover", href: "/discover" },
 ];
 
 
