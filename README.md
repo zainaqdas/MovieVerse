@@ -23,7 +23,7 @@
 
 ## ✨ Overview
 
-**JadeScreen** is a feature-rich streaming platform that lets you browse, discover, and watch movies and TV shows — all in one place. With an emerald green theme, multiple streaming servers, episode tracking, and a clean responsive UI, it delivers a premium viewing experience without the ads.
+**JadeScreen** is a feature-rich streaming platform that lets you browse, discover, and watch movies and TV shows — all in one place. With an emerald green dark theme, 5 streaming servers, episode tracking, genre browsing, and a clean responsive UI, it delivers a premium viewing experience.
 
 ---
 
@@ -36,13 +36,14 @@
 | **Popular** | Browse the most popular movies and shows |
 | **Top Rated** | Discover the highest-rated content |
 | **Search** | Full-text search with type filters (movie/TV/all) and adult content toggle |
-| **Discover** | Browsable catalog with pagination and filters |
-| **Genres** | Filter content by genre, status, season, and more |
+| **Discover** | Switch between Popular and Top Rated with client-side genre filtering |
+| **Genre Pages** | 19 movie genres with emoji icons — dedicated `/genres` listing and `/genres/[id]` detail pages with pagination |
+| **Catalog** | Full catalog with filters by genre, year, rating, language, country — sort by popularity, rating, release date, title, revenue |
 
 ### 📺 Watch Experience
 | Feature | Description |
 |---|---|
-| **Multiple Servers** | Switch between 5 streaming servers: Quantum, Nova, Movio, Turbo, Astro |
+| **5 Streaming Servers** | Quantum (VidLink), Nova (VidFast), MultiEmbed, VidSrc, Astro (Hexa) |
 | **Episode Selector** | Browse and switch seasons/episodes for TV shows |
 | **Auto-Next** | Automatically advances to the next episode based on runtime |
 | **Auto-Play** | Seamless continuous playback |
@@ -84,7 +85,7 @@
 ### Frontend
 | Library | Purpose |
 |---|---|
-| **Next.js 16** | React framework with App Router, server components, and API routes |
+| **Next.js 16** | React framework with App Router, server components, and API routes (Turbopack) |
 | **TypeScript 6** | End-to-end type safety across the entire codebase |
 | **React 18** | UI library with server components and hooks |
 | **Tailwind CSS 3** | Utility-first styling with custom jade color tokens |
@@ -92,20 +93,20 @@
 | **react-icons** | Icon library (Feather, Font Awesome, etc.) |
 | **clsx** | Conditional className utility |
 | **react-toastify** | Toast notifications for user feedback |
-| **react-paginate** | Pagination for catalog and discover pages |
+| **react-paginate** | Pagination for catalog, discover, and genre pages |
 
 ### Backend & Data
 | Library | Purpose |
 |---|---|
-| **Next.js API Routes** | Serverless API proxy to TMDB (9 endpoints) |
-| **TMDB API** | Movie/TV metadata, search, reviews, recommendations |
+| **Next.js API Routes** | Serverless API proxy to TMDB (10 endpoints) |
+| **TMDB API** | Movie/TV metadata, search, reviews, recommendations, genre discovery |
 | **Firebase** | User authentication (Google) and Firestore data persistence |
 
 ### Streaming
 | Library | Purpose |
 |---|---|
 | **HLS.js** | HTTP Live Streaming video player components |
-| **Multiple Embed Servers** | VidLink, VidFast, VidSrc.cc, VidSrc.icu, Hexa.su |
+| **5 Embed Servers** | VidLink (Quantum), VidFast (Nova), MultiEmbed, VidSrc, Hexa (Astro) |
 
 ### Dev & Quality
 | Library | Purpose |
@@ -123,32 +124,39 @@ app/
 ├── page.tsx                     # Home — trending, popular, top rated, collections
 ├── layout.tsx                   # Root layout — header, toast, analytics
 ├── globals.css                  # Global styles — emerald theme, scrollbar
-├── icon.svg                     # SVG favicon
 ├── not-found.tsx                # Custom 404 page
 ├── loading.tsx                  # Route-level loading state
+├── about/page.tsx               # About page — features, tech stack, disclaimer
 ├── (movies)/
 │   ├── catalog/page.tsx         # Catalog — search/browse with filters
-│   ├── discover/page.tsx        # Discover — similar catalog layout
-│   └── watch/[id]/page.tsx      # Watch — video player + episodes + reviews
+│   ├── discover/page.tsx        # Discover — Popular or Top Rated with genre filter
+│   ├── watch/[id]/page.tsx      # Watch — video player + episodes + reviews
+│   └── genres/
+│       ├── page.tsx             # Genre listing — 19 movie genres with emoji cards
+│       └── [genreId]/page.tsx   # Genre detail — movies filtered by genre + pagination
 ├── (user)/
 │   ├── continue-watching/page.tsx  # Resume watching grid
 │   └── profile/page.tsx            # User profile (redirects if unauthenticated)
 └── api/
-    └── tmdb/route.ts            # 🔁 TMDB API proxy (9 endpoints)
+    └── tmdb/route.ts            # 🔁 TMDB API proxy (10 endpoints)
 
 content/                         # 📦 Feature components by route
 ├── Home/                        # Home page sections
 │   ├── HeroSection/             # Hero banner with featured content
-│   ├── Trending.tsx              # Trending movies/TV grid
+│   ├── Trending.tsx             # Trending movies/TV grid
 │   ├── Popular.tsx              # Popular movies section
-│   ├── TopRated.tsx             # Top rated movies
 │   ├── Collection.tsx           # Collection highlights
 │   ├── Season.tsx               # Seasonal picks
 │   └── WatchHistory.tsx         # Recently watched items
 ├── catalog/                     # Catalog page components
 │   ├── Movies.tsx               # Movie grid with loading/pagination
-│   ├── Options.tsx              # Filter bar (search, type, adult)
-│   ├── Pagination.tsx           # Page navigation
+│   ├── Options.tsx              # Filter bar (search, type, adult, etc.)
+│   ├── Pagination.tsx           # Reusable page navigation
+│   └── components/              # Select, checkbox, dropdown
+├── discover/                    # Discover page components
+│   ├── Movies.tsx               # Popular/Top Rated grid with genre filter (useMemo)
+│   ├── Options.tsx              # Sort + genre selectors (URL params)
+│   ├── Pagination.tsx           # Discover-specific pagination
 │   └── components/              # Select, checkbox, dropdown
 ├── watch/                       # Watch page components
 │   ├── MainVideo/               # Video iframe + server selector + options
@@ -156,24 +164,23 @@ content/                         # 📦 Feature components by route
 │   ├── MovieInfo/               # Metadata + rating display
 │   ├── Comment/                 # TMDB reviews with pagination
 │   └── Recommendation/          # Content recommendations
-├── profile/                     # Profile page components
-│   ├── Banner.tsx               # User banner + avatar + stats
-│   ├── CategoryMain.tsx         # List management hub
-│   ├── CategorySelector.tsx     # Tab navigation (Watching/Planning/etc.)
-│   ├── Movies.tsx               # Movie list display
-│   └── Statistics/              # Dashboard with category breakdowns
-└── discover/                    # Discover page components
+└── profile/                     # Profile page components
+    ├── Banner.tsx               # User banner + avatar + stats
+    ├── CategoryMain.tsx         # List management hub
+    ├── CategorySelector.tsx     # Tab navigation (Watching/Planning/etc.)
+    ├── Movies.tsx               # Movie list display
+    └── Statistics/              # Dashboard with category breakdowns
 
 components/                      # 🧩 Shared UI components
 ├── Cards/                       # Card variants
-│   ├── Card/                    # Base movie/show card
+│   ├── Card/                    # Base movie/show card with skeleton loading
 │   ├── featuredCard/            # Hero feature card
 │   ├── TrendingCard/            # Trending section card
 │   ├── ContinueWatchingCard/    # Progress-tracked card
 │   └── HorizontalCard/          # Recommendation row card
 ├── ui/                          # UI primitives
 │   ├── Select.tsx               # Dropdown select
-│   └── CatalogSelect.tsx        # Catalog filter select
+│   └── CatalogSelect.tsx        # Catalog/genre filter select
 ├── errors/                      # Error states
 ├── loadings/                    # Skeleton loading states
 ├── AddToList.tsx                # Add/remove from user lists
@@ -182,7 +189,7 @@ components/                      # 🧩 Shared UI components
 partials/                        # 📐 Layout partials
 ├── header/                      # Navigation header
 │   ├── Header.tsx               # Logo, links, search, profile
-│   ├── Links.tsx                # Nav link items
+│   ├── Links.tsx                # Nav link items (Home, Catalog, Genres, Discover)
 │   ├── Search.tsx               # Search bar with results dropdown
 │   ├── SearchResults.tsx        # Search suggestion results
 │   ├── Profile.tsx              # User avatar/menu
@@ -192,8 +199,8 @@ partials/                        # 📐 Layout partials
 
 lib/                             # 🛠️ Core utilities
 ├── MoviesFunctions.ts           # Server-side TMDB functions (trending, info, etc.)
-├── client-tmdb.ts               # Client-side TMDB proxy wrappers (9 endpoints)
-└── MultiFunctions.ts            # (removed — merged into MoviesFunctions)
+├── client-tmdb.ts               # Client-side TMDB proxy wrappers (10 endpoints)
+└── MultiFunctions.js            # Multi-type utility functions
 
 firebase/                        # 🔥 Firebase modules
 ├── config.js                    # Firebase app initialization
@@ -206,8 +213,8 @@ context/                         # 🔄 React context providers
 └── WatchSetting.tsx             # Player settings (autoplay, auto-next, light mode)
 
 utils/                           # 🔧 Utility functions
-├── constants.ts                 # App constants (servers, nav links, categories)
-├── Genres.ts                    # Genre mapping data
+├── constants.ts                 # App constants (5 servers, nav links, categories, TMDB images)
+├── Genres.ts                    # Genre mapping data (27 genres: movie + TV)
 ├── fonts.ts                     # Custom font configuration
 ├── ProgressHandler.ts           # localStorage watch progress management
 └── SmallPrograms.ts             # Misc helpers (season calculation, etc.)
@@ -221,7 +228,7 @@ types/                           # 📝 TypeScript type definitions
 
 ## 🔌 TMDB API Proxy
 
-JadeScreen uses a **server-side API proxy** at `/api/tmdb` to keep the TMDB API key secure. The proxy supports **9 endpoints**:
+JadeScreen uses a **server-side API proxy** at `/api/tmdb` to keep the TMDB API key secure. The proxy supports **10 endpoints**:
 
 | Endpoint | Path Param | Description |
 |---|---|---|
@@ -230,14 +237,13 @@ JadeScreen uses a **server-side API proxy** at `/api/tmdb` to keep the TMDB API 
 | Trending | `path=trending` | Today's trending content |
 | Popular | `path=movie/popular` | Popular movies |
 | Top Rated | `path=movie/top_rated` | Top rated movies |
+| Discover Movie | `path=discover/movie` | Filter movies by genre (used by genre pages) |
 | Info | `path=info` | Full movie/TV metadata |
 | Recommendations | `path=recommendations` | Similar content suggestions |
 | Reviews | `path=reviews` | TMDB user reviews with pagination |
 | Episodes | `path=episodes` | TV season episode list |
 
-**Client wrapper:** `lib/client-tmdb.ts` provides typed `clientGet*` functions for all endpoints.
-
-**Server functions:** `lib/MoviesFunctions.ts` provides `getTrendingMovies`, `getTopRatedMovies`, `getInfoTMDB`, and `getRecommendation` for server components.
+**Client wrapper:** `lib/client-tmdb.ts` provides typed `clientGet*` functions for all endpoints (e.g., `clientGetMoviesByGenre`, `clientGetPopularMovies`, `clientGetTopRatedMovies`).
 
 ---
 
@@ -266,7 +272,7 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```env
-## TMDB API
+## TMDB API (REQUIRED)
 TMDB_API_KEY=your_tmdb_api_key_here
 
 ## Next.js
@@ -377,9 +383,11 @@ dark: {
 
 ## 🗺️ Roadmap
 
-- [x] TMDB API proxy with 9 endpoints
-- [x] Multiple streaming servers
+- [x] TMDB API proxy with 10 endpoints
+- [x] 5 working streaming servers
 - [x] Episode selector with watched tracking
+- [x] Genre pages — `/genres` listing + `/genres/[id]` detail
+- [x] Discover page — Popular / Top Rated with genre filter
 - [x] Continue watching (localStorage)
 - [x] Auto-next episode
 - [ ] Redis-based progress persistence
@@ -394,7 +402,7 @@ dark: {
 ## 🙏 Acknowledgments
 
 - **[TMDB](https://www.themoviedb.org/)** — for the comprehensive movie/TV database API
-- **[VidLink](https://vidlink.pro)**, **VidFast**, **VidSrc**, **Hexa** — for streaming embed servers
+- **VidLink**, **VidFast**, **MultiEmbed**, **VidSrc**, **Hexa** — for streaming embed servers
 - **[React Icons](https://react-icons.github.io/react-icons/)** — for the icon set
 - **[Framer Motion](https://www.framer.com/motion/)** — for animations
 - All open-source contributors — thank you!

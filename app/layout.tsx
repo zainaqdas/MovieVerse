@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "JadeScreen — Stream Movies & TV Shows",
-  description: "Discover, stream, and explore your favorite movies and TV shows on JadeScreen.",
+  description:
+    "JadeScreen is a modern, open-source streaming platform for movies and TV shows. Browse by genre, discover trending content, build watchlists, and stream from multiple servers — all with a beautiful emerald-green interface.",
   icons: {
     icon: "/favicon.ico",
   },
