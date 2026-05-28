@@ -67,10 +67,23 @@ export const clientGetPopularMovies = async (
   });
 };
 
-export const clientGetTopRatedMovies = async (): Promise<TMDBPaginatedResponse<TMDBMedia> | undefined> => {
+export const clientGetMoviesByGenre = async (
+  genreId: number,
+  page: number = 1
+): Promise<TMDBPaginatedResponse<TMDBMedia> | undefined> => {
+  return tmdbFetch<TMDBPaginatedResponse<TMDBMedia>>({
+    path: "discover/movie",
+    with_genres: String(genreId),
+    page: String(page),
+  });
+};
+
+export const clientGetTopRatedMovies = async (
+  page: number = 1
+): Promise<TMDBPaginatedResponse<TMDBMedia> | undefined> => {
   return tmdbFetch<TMDBPaginatedResponse<TMDBMedia>>({
     path: "movie/top_rated",
-    page: "1",
+    page: String(page),
   });
 };
 

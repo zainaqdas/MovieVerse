@@ -35,6 +35,14 @@ export async function GET(request: NextRequest) {
     url = `${baseUrl}/movie/popular?language=en-US&page=${page}&api_key=${apiKey}`;
   } else if (path === "movie/top_rated") {
     url = `${baseUrl}/movie/top_rated?language=en-US&page=${page}&api_key=${apiKey}`;
+  } else if (path === "discover/movie") {
+    const genreId = searchParams.get("with_genres");
+    const sortBy = searchParams.get("sort_by") || "popularity.desc";
+    if (!genreId) {
+      return NextResponse.json({ error: "Missing 'with_genres' parameter for discover/movie" }, { status: 400 });
+    }
+    url = `${baseUrl}/discover/movie?with_genres=${genreId}&sort_by=${sortBy}&language=en-US&page=${page}&api_key=${apiKey}`;
+    fetchOptions = { next: { revalidate: 3600 } };
   } else if (path === "info") {
     const tmdbId = searchParams.get("id");
     const type = mediaType || "movie";

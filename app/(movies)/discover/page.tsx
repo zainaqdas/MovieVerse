@@ -1,4 +1,4 @@
-import Movies from "@/content/catalog/Movies"
+import Movies from "@/content/discover/Movies"
 import { Fragment } from "react"
 
 const Page = () => {
