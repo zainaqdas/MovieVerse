@@ -14,15 +14,15 @@ export const STREAMING_SERVERS = {
   movie: {
     Quantum: (id: string | number): string => `https://vidlink.pro/movie/${id}?player=jw`,
     Nova: (id: string | number): string => `https://vidfast.pro/movie/${id}?autoPlay=true`,
-    Movio: (id: string | number): string => `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=true`,
-    Turbo: (id: string | number): string => `https://vidsrc.icu/embed/movie/${id}?autoPlay=true`,
+    MultiEmbed: (id: string | number): string => `https://multiembed.mov/?video_id=${id}&tmdb=1`,
+    VidSrc: (id: string | number): string => `https://vidsrc.to/embed/movie/${id}`,
     Astro: (id: string | number): string => `https://hexa.su/watch/movie/${id}?autoPlay=true`,
   },
   tv: {
     Quantum: (id: string | number, season: number, episode: number): string => `https://vidlink.pro/tv/${id}/${season}/${episode}?player=jw`,
     Nova: (id: string | number, season: number, episode: number): string => `https://vidfast.pro/tv/${id}/${season}/${episode}?autoPlay=true`,
-    Movio: (id: string | number, season: number, episode: number): string => `https://vidsrc.cc/v2/embed/tv/${id}/${season}/${episode}?autoPlay=true`,
-    Turbo: (id: string | number, season: number, episode: number): string => `https://vidsrc.icu/embed/tv/${id}/${season}/${episode}?autoPlay=true`,
+    MultiEmbed: (id: string | number, season: number, episode: number): string => `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season}&e=${episode}`,
+    VidSrc: (id: string | number, season: number, episode: number): string => `https://vidsrc.to/embed/tv/${id}/${season}/${episode}`,
     Astro: (id: string | number, season: number, episode: number): string => `https://hexa.su/watch/tv/${id}/${season}/${episode}?autoPlay=true`,
   },
 } as const;
