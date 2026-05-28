@@ -3,9 +3,8 @@ import Card from "@/components/Cards/Card/Card";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Pagination from "./Pagination";
-import { getMultiSearch, getSearch } from "@/lib/MultiFunctions";
+import { clientGetMultiSearch, clientGetSearch, clientGetTrendingMovies } from "@/lib/client-tmdb";
 import Options from "./Options";
-import { getTrendingMovies } from "@/lib/MoviesFunctions";
 
 
 const Movies = () => {
@@ -43,9 +42,9 @@ const Movies = () => {
         const data = await (
           search !== "" ?
             type === "all"
-              ? getMultiSearch(search, page, isAdult)
-              : getSearch(search, page, isAdult, type.toLowerCase())
-            : getTrendingMovies(type.toLowerCase(), page)
+              ? clientGetMultiSearch(search, page, isAdult)
+              : clientGetSearch(search, page, isAdult, type.toLowerCase())
+            : clientGetTrendingMovies(type.toLowerCase(), page)
         );
         if (data?.results) {
           setMovies(data.results);

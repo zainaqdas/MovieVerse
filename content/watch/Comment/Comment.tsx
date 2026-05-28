@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getReviews } from "@/lib/MoviesFunctions";
+import { clientGetReviews } from "@/lib/client-tmdb";
 import { FaComment } from "react-icons/fa6";
 
 const IMAGE_BASE = "https://image.tmdb.org/t/p/w500/";
@@ -34,7 +34,7 @@ const Comments = ({ MovieId, type }: CommentsProps) => {
     const fetchReviews = async () => {
       setLoading(true);
 
-      const data = await getReviews(MovieId!, type || "movie", page);
+      const data = await clientGetReviews(MovieId!, type || "movie", page);
       const results = data?.results || [];
 
       setReviews(results);

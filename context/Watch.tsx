@@ -1,6 +1,6 @@
 'use client';
 
-import { getEpisodes } from '@/lib/TVfunctions';
+import { clientGetEpisodes } from '@/lib/client-tmdb';
 import { saveWatchProgress } from '@/utils/ProgressHandler';
 import { useSearchParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState, useMemo, useRef, useCallback, type ReactNode } from 'react';
@@ -57,7 +57,7 @@ export function WatchAreaContextProvider({ children, MovieInfo, MovieId }: { chi
 
     const fetchEpisodes = async () => {
       try {
-        const data = await getEpisodes(MovieId, season);
+        const data = await clientGetEpisodes(MovieId, season);
         if (!data?.episodes?.length) {
           toast('No episodes found');
           setEpisodes([]);

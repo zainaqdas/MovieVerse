@@ -1,7 +1,7 @@
 "use client"
 "use client"
 import Card from "@/components/Cards/Card/Card"
-import { getPopularMovies } from "@/lib/MoviesFunctions"
+import { clientGetPopularMovies } from "@/lib/client-tmdb"
 import { useEffect, useState } from "react"
 import type { TMDBMedia } from "@/types/global";
 
@@ -13,7 +13,7 @@ const Popular = () => {
   useEffect(() => {
     const getPopular = async () => {
       setLoading(true)
-      const data = await getPopularMovies(page)
+      const data = await clientGetPopularMovies(page)
       setPopularData(prev => [...prev, ...(data?.results || [])])
       setLoading(false)
     }

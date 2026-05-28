@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Fragment, useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { FaStar } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { getMultiSearch } from "@/lib/MultiFunctions";
+import { clientGetMultiSearch } from "@/lib/client-tmdb";
 import { getLanguageCode } from "@/utils/SmallPrograms";
 import type { TMDBMedia, TMDBPaginatedResponse } from "@/types/global";
 
@@ -96,7 +96,7 @@ const SearchResults = ({ searchValue, setIsSearchBoxOpen, setSearchValue }: Sear
       return;
     }
     try {
-      const response = await getMultiSearch(debouncedSearchValue, 1, false);
+      const response = await clientGetMultiSearch(debouncedSearchValue, 1, false);
       if (!response) throw new Error("Failed to fetch data");
 
       if (response?.results?.length === 0) {
