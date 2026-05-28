@@ -4,6 +4,7 @@ const nextConfig = {
 
   images: {
     unoptimized: true,
+    qualities: [100, 75],
     remotePatterns: [
       { protocol: "https", hostname: "s4.anilist.co" },
       { protocol: "https", hostname: "i.ytimg.com" },
