@@ -32,7 +32,7 @@ const Popular = () => {
 
       <div className="mt-8 w-full flex justify-center">
         <div
-          className="bg-[#22212c] hover:bg-[#2d2c3e] cursor-pointer w-full max-w-96 text-center py-2 rounded-lg text-slate-200"
+          className="bg-dark-card hover:bg-jade-800 cursor-pointer w-full max-w-96 text-center py-2 rounded-lg text-slate-200"
           onClick={() => setPage(page + 1)}
         >Load More</div>
       </div>

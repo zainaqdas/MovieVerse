@@ -18,7 +18,7 @@ const ContinueWatchingCard = ({ data, hidden }: ContinueWatchingCardProps) => {
 
   return (
     <Link
-      className="w-full h-full aspect-video cursor-pointer rounded-xl relative overflow-hidden border-2 border-[#22212c] bg-[#22212c] group"
+      className="w-full h-full aspect-video cursor-pointer rounded-xl relative overflow-hidden border-2 border-dark-card bg-dark-card group"
       href={`/watch/${data?.id}?media_type=${data?.media_type}&se=${data?.season}&ep=${data?.episode}`}
     >
       <Image
@@ -46,7 +46,7 @@ const ContinueWatchingCard = ({ data, hidden }: ContinueWatchingCardProps) => {
 
           <div className="w-full bg-[#404141] h-1 rounded-md">
             <div
-              className="h-full bg-[#dd8dae] rounded-md"
+              className="h-full bg-jade-500 rounded-md"
               style={{ width: `${((data?.episode || 0) * 100 / (data?.totalepisode || 1)) || 0}%` }}
             ></div>
           </div>

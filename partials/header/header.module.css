@@ -6,7 +6,7 @@
   height: 6rem;
   width: 100%;
   z-index: 999;
-  background: linear-gradient(#2a283bd6, #2a283b94, #1c1b2800);
+  background: linear-gradient(#0f172ad6, #0f172a94, #0a0f1e00);
 }
 
 .wrapper {
@@ -25,7 +25,7 @@
   width: 100%;
   height: 2px;
   border-radius: 40px;
-  background: #20212d;
+  background: #065f46;
   bottom: 0;
   left: 0;
 } */

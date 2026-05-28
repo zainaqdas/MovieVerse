@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import Link from "next/link";
 
-const SETTINGS_STORAGE_KEY = "movieverse_settings";
+const SETTINGS_STORAGE_KEY = "jadescreen_settings";
 
 const defaultSettings = {
   autoPlay: true,
@@ -28,10 +28,9 @@ interface SettingToggleProps {
   onChange: (val: boolean) => void;
 }
 
-const SettingToggle = ({ icon, label, description, enabled, onChange }: SettingToggleProps) => (
-  <div className="flex items-center justify-between py-4 px-5 rounded-xl bg-[#1a1923] border border-[#2a2838] hover:border-[#3a3850] transition-all group">
+const SettingToggle = ({ icon, label, description, enabled, onChange }: SettingToggleProps) => (    <div className="flex items-center justify-between py-4 px-5 rounded-xl bg-dark-card border border-[#1e293b] hover:border-jade-700 transition-all group">
     <div className="flex items-center gap-4">
-      <div className="text-xl text-[#a08fdb] group-hover:text-[#b8a8f0] transition-colors">
+      <div className="text-xl text-jade-400 group-hover:text-jade-300 transition-colors">
         {icon}
       </div>
       <div>
@@ -42,7 +41,7 @@ const SettingToggle = ({ icon, label, description, enabled, onChange }: SettingT
     <button
       onClick={() => onChange(!enabled)}
       className={`relative w-12 h-6 rounded-full transition-all duration-300 ${
-        enabled ? "bg-[#7c5cfc]" : "bg-[#2a2838]"
+        enabled ? "bg-jade-500" : "bg-[#1e293b]"
       }`}
     >
       <div
@@ -97,8 +96,8 @@ const SettingsPage = () => {
 
   if (loading) {
     return (
-      <div className="w-full min-h-screen bg-[#12111a] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#7c5cfc] border-t-transparent rounded-full animate-spin" />
+      <div className="w-full min-h-screen bg-dark-bg flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-jade-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -114,7 +113,7 @@ const SettingsPage = () => {
           <div className="mt-[15px] flex items-center gap-3">
             <Link
               href="/profile"
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#1a1923] border border-[#2a2838] text-[#a08fdb] hover:text-white hover:border-[#7c5cfc] transition-all"
+              className="flex items-center justify-center w-9 h-9 rounded-lg bg-dark-card border border-[#1e293b] text-jade-400 hover:text-white hover:border-jade-500 transition-all"
             >
               <MdArrowBack />
             </Link>
@@ -123,11 +122,11 @@ const SettingsPage = () => {
 
           {/* Account Section */}
           <div className="mt-8">
-            <h2 className="text-[#a08fdb] font-['poppins'] text-[13px] font-semibold uppercase tracking-wider mb-3">Account</h2>
+            <h2 className="text-jade-400 font-['poppins'] text-[13px] font-semibold uppercase tracking-wider mb-3">Account</h2>
 
-            <div className="p-5 rounded-xl bg-[#1a1923] border border-[#2a2838]">
+            <div className="p-5 rounded-xl bg-dark-card border border-[#1e293b]">
               <div className="flex items-center gap-4">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#3a3850] flex-shrink-0">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-jade-700 flex-shrink-0">
                   {userInfo?.photo ? (
                     <Image
                       src={userInfo.photo}
@@ -136,7 +135,7 @@ const SettingsPage = () => {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#2a2838] flex items-center justify-center text-2xl text-[#a08fdb]">
+                    <div className="w-full h-full bg-[#1e293b] flex items-center justify-center text-2xl text-jade-400">
                       <FaUser />
                     </div>
                   )}
@@ -156,7 +155,7 @@ const SettingsPage = () => {
                 </div>
                 <Link
                   href="/profile"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#2a2838] text-[#c8c6d0] text-[13px] hover:bg-[#3a3850] transition-all flex-shrink-0"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1e293b] text-[#c8c6d0] text-[13px] hover:bg-jade-800 transition-all flex-shrink-0"
                 >
                   <FaUser className="text-xs" />
                   View Profile
@@ -167,7 +166,7 @@ const SettingsPage = () => {
 
           {/* Watch Preferences Section */}
           <div className="mt-10">
-            <h2 className="text-[#a08fdb] font-['poppins'] text-[13px] font-semibold uppercase tracking-wider mb-3">Watch Preferences</h2>
+            <h2 className="text-jade-400 font-['poppins'] text-[13px] font-semibold uppercase tracking-wider mb-3">Watch Preferences</h2>
 
             <div className="flex flex-col gap-2">
               <SettingToggle
@@ -198,8 +197,8 @@ const SettingsPage = () => {
       </div>
 
       {/* background blur elements */}
-      <div className="fixed w-[138.33px] h-[82.25px] left-[1%] top-[2%] bg-[#92b7fc8f] blur-[200px]" />
-      <div className="fixed w-[500px] h-[370.13px] right-[50%] bottom-[20%] bg-[#576683b4] blur-[215.03px] translate-x-[70%] z-0 rounded-b-[30%]" />
+      <div className="fixed w-[138.33px] h-[82.25px] left-[1%] top-[2%] bg-[#10b9814d] blur-[200px]" />
+      <div className="fixed w-[500px] h-[370.13px] right-[50%] bottom-[20%] bg-[#05966966] blur-[215.03px] translate-x-[70%] z-0 rounded-b-[30%]" />
     </Fragment>
   );
 };

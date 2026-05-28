@@ -78,14 +78,14 @@ const Movies = ({ active, totalMovies }: MoviesProps) => {
       {SplitedMovies.length > 1 && (
         <div className="text-white flex gap-1 text-[16px] justify-center mt-8 mb-5">
           <div
-            className="flex items-center justify-center h-10 w-10 cursor-pointer rounded-full bg-[#22212c] transition hover:bg-[#48465e]"
+            className="flex items-center justify-center h-10 w-10 cursor-pointer rounded-full bg-dark-card transition hover:bg-jade-800"
             onClick={handlePreviousPage}
           >
             <FaArrowLeft />
           </div>
 
           <div
-            className="flex items-center justify-center h-10 w-10 cursor-pointer rounded-full bg-[#22212c] transition hover:bg-[#48465e]"
+            className="flex items-center justify-center h-10 w-10 cursor-pointer rounded-full bg-dark-card transition hover:bg-jade-800"
             onClick={handleNextPage}
           >
             <FaArrowRight />

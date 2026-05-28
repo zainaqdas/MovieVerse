@@ -30,7 +30,7 @@ const Card = ({ data, index, loading, hidden, type }: CardProps) => {
 
   if (loading) {
     return <div
-      className={`${styles.bounce} aspect-[9/14] rounded-2xl cursor-pointer mb-2 bg-[#22212c]`}
+      className={`${styles.bounce} aspect-[9/14] rounded-2xl cursor-pointer mb-2 bg-dark-card`}
       style={{ animationDelay: `${(index || 0) * 0.02 + 0.1}s` }}
     ></div>
   }

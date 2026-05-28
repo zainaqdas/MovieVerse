@@ -5,7 +5,7 @@
   position: absolute;
   z-index: 1;
   display: flex;
-  background: linear-gradient(360deg, #12111ab8, transparent);
+  background: linear-gradient(360deg, #0a0f1eb8, transparent);
   left: 0;
   bottom: 0;
 }

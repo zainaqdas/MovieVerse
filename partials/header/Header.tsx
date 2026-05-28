@@ -18,16 +18,18 @@ const Header = () => {
           <Responsive />
 
           <Link href={"/"} className={`${nightTokyo.className} text-white flex items-center gap-2`}>
-            <div className="relative w-[50px]">
+            <div className="relative w-[50px] h-[50px]">
               <Image
-                src="/images/logo-2.png"
-                className="absolute top-1/2 -translate-y-1/2 left-0"
-                alt="movieVerse"
-                width={46}
-                height={46}
+                src="/images/jadescreen-logo.svg"
+                alt="JadeScreen"
+                width={50}
+                height={50}
+                className="object-contain"
               />
             </div>
-            <span className="text-3xl">MovieVerse</span>
+            <span className="text-3xl bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+              JadeScreen
+            </span>
           </Link>
 
           {/* links */}

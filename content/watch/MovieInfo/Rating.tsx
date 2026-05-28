@@ -18,13 +18,12 @@ const Rating = ({ info }: RatingProps) => {
         className="object-cover absolute -top-20 -z-1 left-1/2 -translate-x-1/2"
       />
 
-      <div className="bg-[#22212c] border border-[#39374b] rounded-2xl h-max p-4 flex flex-col items-center justify-center w-max relative z-10">
-        <div className="flex gap-2">
-          <span className="text-[#c7799f] text-2xl font-semibold">{info?.vote_average}/10</span>
+      <div className="bg-dark-card border border-jade-800 rounded-2xl h-max p-4 flex flex-col items-center justify-center w-max relative z-10">
+        <div className="flex gap-2">            <span className="text-jade-400 text-2xl font-semibold">{info?.vote_average}/10</span>
           <span className="text-[#717480] text-sm font-semibold">{info?.popularity} reviews</span>
         </div>
 
-        <div className="flex items-center bg-[#333145] gap-2 text-[27px] rounded-lg px-4 py-1 mt-4 text-[#6a727f]">
+        <div className="flex items-center bg-jade-950 gap-2 text-[27px] rounded-lg px-4 py-1 mt-4 text-jade-300">
           <IoStar />
           <IoStar />
           <IoStar />

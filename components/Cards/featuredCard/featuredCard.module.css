@@ -1,5 +1,5 @@
 .card {
-  background: #22212c;
+  background: #111827;
   padding: 10px 20px;
   border-radius: 15px;
   text-align: center;
@@ -13,7 +13,7 @@
 }
 
 .card:hover {
-  box-shadow: 0px 0px 55px 8px #26243c85;
+  box-shadow: 0px 0px 55px 8px #065f4680;
   transition: 0.2s;
 }
 
@@ -24,7 +24,7 @@
   height: 100%;
   left: 0;
   bottom: 0;
-  background: linear-gradient(360deg, #2c2a3eb8, #0000);
+  background: linear-gradient(360deg, #065f46b8, #0000);
 }
 
 .card:hover::before {
@@ -34,5 +34,5 @@
   height: 100%;
   left: 0;
   bottom: 0;
-  background: linear-gradient(360deg, #12111a, #0000);
+  background: linear-gradient(360deg, #0a0f1e, #0000);
 }

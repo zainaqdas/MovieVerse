@@ -16,7 +16,7 @@ const Option = ({ movieInfo: _movieInfo }: OptionProps) => {
   const { setEpisode, MovieInfo } = useWatchContext()
 
   return (
-    <div className="flex justify-between bg-[#22212c] px-2 py-2 text-slate-200 text-sm max-[880px]:flex-col max-[880px]:gap-5">
+    <div className="flex justify-between bg-dark-card px-2 py-2 text-slate-200 text-sm max-[880px]:flex-col max-[880px]:gap-5">
       <div className="flex gap-5 max-[880px]:flex-wrap">
 
         <div
@@ -30,18 +30,18 @@ const Option = ({ movieInfo: _movieInfo }: OptionProps) => {
         >
           <span><FaLightbulb /></span>
           Light
-          <span className="text-[#e26bbd]">{watchSetting.light ? "On" : "Off"}</span>
+          <span className="text-jade-400">{watchSetting.light ? "On" : "Off"}</span>
         </div>
 
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => setWatchSetting(prev => ({ ...prev, autoPlay: !prev.autoPlay }))}
-        >Auto Play <span className="text-[#e26bbd]">{watchSetting.autoPlay ? "On" : "Off"}</span></div>
+        >Auto Play <span className="text-jade-400">{watchSetting.autoPlay ? "On" : "Off"}</span></div>
 
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => setWatchSetting(prev => ({ ...prev, autoNext: !prev.autoNext }))}
-        >Auto Next <span className="text-[#e26bbd]">{watchSetting.autoNext ? "On" : "Off"}</span></div>
+        >Auto Next <span className="text-jade-400">{watchSetting.autoNext ? "On" : "Off"}</span></div>
 
       </div>
 
